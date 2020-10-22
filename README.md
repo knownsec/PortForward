@@ -59,19 +59,19 @@
 
 **2.1 简单模式**  
 <div align="center">
-<img src="images/simple_forward.png" width="500">
+<img src="./images/simple_forward.png" width="500">
 </br>[图1.简单转发模式]
 </div>
 
 **2.2 受限主机转发**  
 <div align="center">
-<img src="images/restricted_forward.png" width="500">
+<img src="./images/restricted_forward.png" width="500">
 </br>[图2.受限主机转发模式图]
 </div> 
 
 **2.3 级联端口转发**  
 <div align="center">
-<img src="images/mutil_forward.png" width="500">
+<img src="./images/mutil_forward.png" width="500">
 </br>[图3.级联端口转发]
 </div> 
 
@@ -94,7 +94,7 @@
 ### 0x04 逻辑结构
 `PortForward` 支持 `TCP` , `UDP` 协议层的端口转发，代码抽象后逻辑结构框架如下：
 <div align="center">
-<img src="images/portforward_framework.png" width="500">
+<img src="./images/portforward_framework.png" width="500">
 </br>[图4.整体框架]
 </div>
 
