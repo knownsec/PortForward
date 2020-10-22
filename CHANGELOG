@@ -1,0 +1,39 @@
+# Changelog
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Released]
+
+## [0.5.0] - 2020-10-22
+### Added
+- Refactoring source code strucure for StarLink
+
+## [Unreleased]
+
+## [0.4.1] - 2020-10-16
+### Added
+- add multi-channel support of conn-conn mode
+### Fixed
+- Modify timeout of unsuccessfully established channel in listen-listen
+  work mode from 16s => 120s
+
+## [0.4] - 2020-09-25
+### Added
+- Add multi-channel support
+### Changed
+- Optimize code structure and implementation
+
+## [0.3] - 2020-09-20
+### Added
+- Refactoring the project framework into a three-layer structure:
+  work_mode / protocol / socket
+
+## [0.2] - 2020-09-10
+### Added
+- Refactoring project framework
+
+## [0.1] - 2020-08-19
+### Added
+- Initialize project
