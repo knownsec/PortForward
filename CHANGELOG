@@ -12,9 +12,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.1] - 2021-04-23
+### Fixed
+- In listen-listen mode, actively close the previous socket when there are
+  multiple connections to the same end
+
 ## [0.4.1] - 2020-10-16
 ### Added
-- add multi-channel support of conn-conn mode
+- Add multi-channel support of conn-conn mode
 ### Fixed
 - Modify timeout of unsuccessfully established channel in listen-listen
   work mode from 16s => 120s

@@ -200,22 +200,37 @@ func ListenListen(proto uint8, addr1 string, addr2 string) {
             quit2 <- true
             release(sock1, sock2)
             return
-        case sock1 = <-clientc1:
-            if sock1 == nil {
+        case c1 := <-clientc1:
+            if c1 == nil {
                 // set stop flag when error happend
                 stop <- true
                 continue
             }
+            // close the last pending sock1
+            if sock1 != nil {
+                sock1.Close()
+            }
+            sock1 = c1
             LogInfo("A point(link%d) [%s] is ready", count, sock1.RemoteAddr())
-        case sock2 = <-clientc2:
-            if sock2 == nil {
+        case c2 := <-clientc2:
+            if c2 == nil {
                 // set stop flag when error happend
                 stop <- true
                 continue
             }
+            // close the last pending sock2
+            if sock2 != nil {
+                sock2.Close()
+            }
+            sock2 = c2
             LogInfo("B point(link%d) [%s] is ready", count, sock2.RemoteAddr())
         case <-time.After(120 * time.Second):
-            LogWarn("socket wait timeout, reset")
+            if sock1 != nil {
+                LogWarn("A point(%s) socket wait timeout, reset", sock1.RemoteAddr())
+            }
+            if sock2 != nil {
+                LogWarn("B point(%s) socket wait timeout, reset", sock2.RemoteAddr())
+            }
             release(sock1, sock2)
             continue
         }
@@ -273,6 +288,7 @@ func ConnConn(proto uint8, addr1 string, addr2 string) {
         n, err := sock1.Read(buf)
         if err != nil {
             LogError("A point: %s", err)
+            time.Sleep(16 * time.Second)
             continue
         }
         buf = buf[:n]
@@ -292,6 +308,7 @@ func ConnConn(proto uint8, addr1 string, addr2 string) {
         _, err = sock2.Write(buf)
         if err != nil {
             LogError("B point: %s", err)
+            time.Sleep(16 * time.Second)
             continue
         }
 
